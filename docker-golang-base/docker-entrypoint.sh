@@ -1,4 +1,6 @@
 #!/bin/sh
+git config --global user.name "${GIT_USER}"
+git config --global user.email "${GIT_EMAIL}"
 if [ "" = "$(which go)" ]; then
 	echo "Installing Go Language version: $GOVER"
 	if [ "latest" = "$GOVER" ]; then
@@ -21,8 +23,8 @@ if [ "" = "$(which go)" ]; then
 fi
 if [ 0 -eq $# ]; then
     if [ "" != "$GO_CMD" ] && [ "" != "$GO_ARGS" ]; then
-		echo "Running provided command: $GO_CMD $GO_ARGS"
-		sh -c "$GO_CMD $GO_ARGS" 
+		echo "Running provided command: ${GO_CMD} ${GO_ARGS}"
+		sh -c "${GO_CMD} ${GO_ARGS}" 
 	else
 		echo "Executing shell command: $@"
 		sh -c "$@"
