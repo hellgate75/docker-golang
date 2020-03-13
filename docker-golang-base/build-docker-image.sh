@@ -16,4 +16,5 @@ if [ "" != "$(docker image ls|awk 'BEGIN {FS=OFS=" "}{print $1":"$2}'| grep 'gol
 	echo "Removing existing docker image ..."
 	docker rmi -f golang:1.14
 fi
+echo "Building Go! Language base image v. $DOCKER_VERSION ..."
 docker build --rm --force-rm --no-cache $VARRGS -t golang:$DOCKER_VERSION .
