@@ -15,16 +15,39 @@ if [ "" = "$(which go)" ]; then
 	echo "Go Language version:"
 	go version
 	echo "Go Language tools installation started ..."
-	go get -u  github.com/mdempsky/gocode > /dev/null 2>&1 &&\
-	go get -u golang.org/x/tools/... > /dev/null 2>&1 &&\
-	go get -u github.com/golang/dep/cmd/dep > /dev/null 2>&1 &&\
-	go get -u golang.org/x/lint github.com/golang/lint github.com/golang/lint/golint > /dev/null 2>&1
+	go get -u  github.com/mdempsky/gocode &&\
+	go get -u golang.org/x/tools/...  &&\
+	go get -u github.com/golang/dep/cmd/dep
 	echo "Go Language tools complete!!"
+fi
+# 	APP_REPO=github.com\
+# 	APP_USER=\
+# 	APP_NAME=
+
+if [ "" != "${APP_REPO}" ] && [ "" != "${APP_USER}" ] && [ "" != "${APP_NAME}" ]; then
+	if [ "" = "$(ls ${VOLUME_PATH}/)" ]; then
+		if [ "" != "${SVN_REPO}" ]; then
+			echo "Cloning git repo ${SVN_REPO} in volume path"
+			git clone ${SVN_REPO} ${VOLUME_PATH}
+			git checkout ${SVN_BRANCH:-master}
+		else
+			echo "No git repo to clone (variable \$SVN_BRANCH) ..."
+		fi
+	else
+		echo "pulling from branch: ${SVN_BRANCH:-master} ..."
+		git fetch
+		git pull origin ${SVN_BRANCH:-master}
+	fi
+	GO_PROJECT_FOLDER="${GOPATH}/src/${APP_REPO}/${APP_USER}/${APP_NAME}"
+	if [ "" = "$(ls ${GO_PROJECT_FOLDER}/)" ]; then
+		echo "Creating link in go sources path: ${GO_PROJECT_FOLDER} ..."
+		ln -s -T ${GO_PROJECT_FOLDER} ${VOLUME_PATH}
+	fi
 fi
 if [ 0 -eq $# ]; then
     if [ "" != "$GO_CMD" ] && [ "" != "$GO_ARGS" ]; then
 		echo "Running provided command: ${GO_CMD} ${GO_ARGS}"
-		sh -c "${GO_CMD} ${GO_ARGS}" 
+		sh -c "${GO_CMD}" 
 	else
 		echo "Executing shell command: $@"
 		sh -c "$@"
