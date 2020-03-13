@@ -7,6 +7,9 @@
 # Docker Go-language base image
 Go Language docker base image
 
+This image install latest version in the release list, from Go! Language repo, and it requires express internet access. After the
+installation of the go-language everything continue straight. If the Argument `GO_VERSION` is changed it will install a qualified version on 
+runtime at the first container execution.
 
 
 ## Characteristics
@@ -60,6 +63,7 @@ Note important information please fill mandatory arguments in the [golang.env](.
 * Argument *GO_GIT_EMAIL* -> your svn user email
 
 Than on run you can assign the environemnt variables
+* *GO_VERSION* -> Go! Language Build Version (default: latest) 
 * *SVN_REPO* -> svn project repository (clone and/or pull on container start-up) 
 * *SVN_BRANCH* -> Working svn repository branch (e.g.: git@github.com:my-svn-user/my-project.git)
 * *APP_REPO* -> repository as defined in $GOPATH/src [e.g.: github.com]

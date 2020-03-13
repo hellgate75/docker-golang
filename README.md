@@ -10,7 +10,7 @@ Go Language docker images
 
 ## Branch
 
-Current branch is `golang-v1.14`
+Current branch is `golang-universal`
 
 
 ## Content
