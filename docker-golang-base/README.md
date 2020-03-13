@@ -51,7 +51,7 @@ Emtry Points:
 
 ## Build
 
-We provide [build-docker0image.sh](./build-docker0image.sh) script file, that belongd to the [golang.env](./golang.env) arguments file. 
+We provide [build-docker-image.sh](./build-docker-image.sh) script file, that belongd to the [golang.env](./golang.env) arguments file. 
 
 It's parsed by the shell script in the build command.
 

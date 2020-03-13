@@ -8,16 +8,20 @@
 Go Language docker images
 
 
+## Branch
 
+Current branch is `golang-v1.14`
 
 
 ## Content
 
 In this repository we have a proposal for Go! Language based products dockerization. In the details we are containerizing Go Language repositories.
 
-Sample wants to give containers on request.
+Sample wants to give containers on demand.
 
-Here some provided sub-projects, by categoty.
+Following some provided sub-projects, by category.
+
+### Foundation
 
 * Go! Language base docker image scripts [here](/docker-golang-base) 
 
