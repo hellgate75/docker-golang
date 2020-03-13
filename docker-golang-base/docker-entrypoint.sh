@@ -17,7 +17,9 @@ if [ "" = "$(which go)" ]; then
 	echo "Go Language tools installation started ..."
 	go get -u  github.com/mdempsky/gocode &&\
 	go get -u golang.org/x/tools/...  &&\
-	go get -u github.com/golang/dep/cmd/dep
+	go get -u github.com/golang/dep/cmd/dep &&\
+	go get -u github.com/golangci/golangci-lint/cmd/golangci-lint &&\
+	ln -s -T /root/go/bin/golangci-lint /root/go/bin/golint
 	echo "Go Language tools complete!!"
 fi
 # 	APP_REPO=github.com\
@@ -41,7 +43,7 @@ if [ "" != "${APP_REPO}" ] && [ "" != "${APP_USER}" ] && [ "" != "${APP_NAME}" ]
 	GO_PROJECT_FOLDER="${GOPATH}/src/${APP_REPO}/${APP_USER}/${APP_NAME}"
 	if [ "" = "$(ls ${GO_PROJECT_FOLDER}/)" ]; then
 		echo "Creating link in go sources path: ${GO_PROJECT_FOLDER} ..."
-		ln -s -T ${GO_PROJECT_FOLDER} ${VOLUME_PATH}
+		ln -s -T ${VOLUME_PATH} ${GO_PROJECT_FOLDER}
 	fi
 fi
 if [ 0 -eq $# ]; then

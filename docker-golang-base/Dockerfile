@@ -1,5 +1,13 @@
 FROM ubuntu:19.10
 
+ARG GO_GIT_USER
+ARG GO_GIT_EMAIL
+ARG GO_SVN_REPO
+ARG GO_SVN_BRANCH
+ARG GO_APP_REPO
+ARG GO_APP_USER
+ARG GO_APP_NAME
+
 ENV GOINST=/usr/share/go\
 	GOPATH=/root/go
 ENV PATH=${PATH}:${GOPATH}/bin:${GOINST}/bin\
@@ -33,6 +41,8 @@ RUN git config --global user.name "${GIT_USER}" &&\
  go get -u  github.com/mdempsky/gocode &&\
  go get -u golang.org/x/tools/... &&\
  go get -u github.com/golang/dep/cmd/dep &&\
+ go get -u github.com/golangci/golangci-lint/cmd/golangci-lint &&\
+ ln -s -T /root/go/bin/golangci-lint /root/go/bin/golint &&\
  go version &&\
 mkdir -p /usr/shared/app
 

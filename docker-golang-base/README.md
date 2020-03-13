@@ -36,7 +36,7 @@ Ports:
 
 Volumes:
 
-* /usr/shared/app - containiing eventually svn repository base folder
+* /usr/shared/app - *containing eventually svn repository base folder, not mandatory*
 
 
 Commands:
@@ -46,7 +46,7 @@ Commands:
 
 Emtry Points:
 
-* [docker-entry-point.sh](./docker-entry-point.sh) - compute multiple functions: install/reintall go language, clone or pull svn repository, execute container command line commands
+* [docker-entry-point.sh](./docker-entry-point.sh) - *compute multiple functions: install/reintall go language, clone or pull svn repository, execute container command line commands*
 
 
 ## Build
@@ -55,8 +55,18 @@ We provide [build-docker-image.sh](./build-docker-image.sh) script file, that be
 
 It's parsed by the shell script in the build command.
 
-Note important 
+Note important information please fill mandatory arguments in the [golang.env](./golang.env) arguments file:
+* Argument *GO_GIT_USER* -> your svn user name
+* Argument *GO_GIT_EMAIL* -> your svn user email
 
+Than on run you can assign the environemnt variables
+* *SVN_REPO* -> svn project repository (clone and/or pull on container start-up) 
+* *SVN_BRANCH* -> Working svn repository branch (e.g.: git@github.com:my-svn-user/my-project.git)
+* *APP_REPO* -> repository as defined in $GOPATH/src [e.g.: github.com]
+* *APP_USER* -> repository as defined in $GOPATH/src/$GO_APP_REPO [e.g.: my-svn-user]
+* *APP_NAME* -> repository name defined in $GOPATH/src/$GO_APP_REPO/$GO_APP_USER [e.g.: my-project]
+
+*For the svn URL(s), it;s preferred ssh reference on the https one.*
 
 ## License
 
