@@ -10,7 +10,7 @@ Go Language docker images
 
 ## Branch
 
-Current branch is `master` -> `golang-universal`
+Current branch is `golang-universal`
 
 
 ## Content
