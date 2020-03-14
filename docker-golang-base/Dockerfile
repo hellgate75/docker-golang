@@ -31,8 +31,7 @@ COPY ./docker-entrypoint.sh /
 RUN chmod 777  /root/install-golang.sh &&\
  chmod 777  /docker-entrypoint.sh &&\
  sh /root/install-golang.sh
-RUN rm -f /root/install-golang.sh &&\
- chmod 777 ${GOINST}/bin/*
+RUN rm -f /root/install-golang.sh
 RUN echo -e "\n\n" | ssh-keygen -t rsa -f /root/.ssh/id_rsa
 RUN git config --global user.name "${GIT_USER}" &&\
  git config --global user.email "${GIT_EMAIL}" &&\
