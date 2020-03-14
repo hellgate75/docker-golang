@@ -3,6 +3,9 @@ DOCKER_VERSION="universal"
 if [ "" != "$1" ]; then
 	DOCKER_VERSION="$1"
 fi
+if [ "" != "$(which dos2unix)" ]; then
+	dos2unix golang.env
+fi
 FOLDER="$(realpath "$(dirname "$0")")"
 ARGS=""
 VARRGS=""
