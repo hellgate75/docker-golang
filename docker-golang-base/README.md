@@ -31,8 +31,8 @@ Variables:
 * SVN_REPO -> Argument GO_SVN_REPO -> svn project repository (clone and/or pull on container start-up) 
 * SVN_BRANCH -> Argument GO_SVN_BRANCH -> Working svn repository branch
 * APP_REPO -> Argument GO_APP_REPO -> repository as defined in $GOPATH/src [e.g.: github.com]
-* APP_USER -> Argument GO_APP_USER -> repository as defined in $GOPATH/src/$GO_APP_REPO [e.g.: my-svn-user]
-* APP_NAME -> Argument GO_APP_NAME -> repository name defined in $GOPATH/src/$GO_APP_REPO/$GO_APP_USER
+* APP_USER -> Argument GO_APP_USER -> repository as defined in $GOPATH/src/$APP_REPO [e.g.: my-svn-user]
+* APP_NAME -> Argument GO_APP_NAME -> repository name defined in $GOPATH/src/$APP_REPO/$APP_USER
 
 Latest 3 variables defines the path under the GOPATH for the project source, related to automate build, and link sources inside the GOPATH.
 
@@ -72,8 +72,8 @@ Than on run you can assign the environemnt variables
 * *SVN_REPO* -> svn project repository (clone and/or pull on container start-up) 
 * *SVN_BRANCH* -> Working svn repository branch (e.g.: git@github.com:my-svn-user/my-project.git)
 * *APP_REPO* -> repository as defined in $GOPATH/src [e.g.: github.com]
-* *APP_USER* -> repository as defined in $GOPATH/src/$GO_APP_REPO [e.g.: my-svn-user]
-* *APP_NAME* -> repository name defined in $GOPATH/src/$GO_APP_REPO/$GO_APP_USER [e.g.: my-project]
+* *APP_USER* -> repository as defined in $GOPATH/src/$APP_REPO [e.g.: my-svn-user]
+* *APP_NAME* -> repository name defined in $GOPATH/src/$APP_REPO/$APP_USER [e.g.: my-project]
 
 *For the svn URL(s), it;s preferred ssh reference on the https one.*
 
