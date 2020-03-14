@@ -1,7 +1,9 @@
 #!/bin/sh
 FOLDER="$(realpath "$(dirname "$0")")"
-ARGS=""
 VARRGS=""
+if [ "" != "$(which dos2unix)" ]; then
+	dos2unix golang.env
+fi
 for argument in $(cat $FOLDER/golang.env); do
 	if [ "" != "$(echo $argument|awk 'BEGIN {FS=OFS="="}{print $2}')" ]; then
 		VARRGS="$VARRGS --build-arg $argument"
