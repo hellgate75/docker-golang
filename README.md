@@ -26,6 +26,14 @@ Following some provided sub-projects, by category.
 * Go! Language base docker image scripts [here](/docker-golang-base) 
 
 
+## Other branches
+
+* [master](https://github.com/hellgate75/docker-golang/)
+
+* [golang v1,14](https://github.com/hellgate75/docker-golang/tree/golang-v1.14)
+
+
+
 
 ## License
 
