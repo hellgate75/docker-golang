@@ -28,8 +28,9 @@ ENV PATH=${PATH}:${GOPATH}/bin:${GOINST}/bin\
 WORKDIR /root
 COPY ./install-golang.sh /root
 COPY ./docker-entrypoint.sh /
-RUN chmod 777  /root/install-golang.sh &&\
- chmod 777  /docker-entrypoint.sh &&\
+RUN chmod +x /root/install-golang.sh &&\
+ mv /docker-entrypoint.sh /entrypoint.sh &&\
+ chmod +x /entrypoint.sh &&\
  sh /root/install-golang.sh
 RUN rm -f /root/install-golang.sh
 RUN echo -e "\n\n" | ssh-keygen -t rsa -f /root/.ssh/id_rsa
