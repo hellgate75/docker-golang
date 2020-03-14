@@ -11,6 +11,7 @@ if [ "" = "$(which go)" ]; then
 	wget -Lq https://dl.google.com/go/go${GOVER}.${OS}-${ARCH}.tar.gz -O /root/go${GOVER}.${OS}-${ARCH}.tar.gz
 	tar -xzf /root/go${GOVER}.${OS}-${ARCH}.tar.gz -C /usr/share/
 	rm -Rf /root/go${GOVER}.${OS}-${ARCH}.tar.gz
+	chmod 777 ${GOINST}/bin/*
 	echo "Go Language v. ${GOVER} installation complete||"
 	echo "Go Language version:"
 	go version
