@@ -17,9 +17,9 @@ for argument in $(cat $FOLDER/golang.env); do
 	fi
 done
 echo "Using arguments:$VARRGS"
-if [ "" != "$(docker image ls|awk 'BEGIN {FS=OFS=" "}{print $1":"$2}'| grep 'golang:$DOCKER_VERSION')" ]; then
+if [ "" != "$(docker image ls|awk 'BEGIN {FS=OFS=" "}{print $1":"$2}'| grep 'hellgate75'| grep 'golang:universal')" ]; then
 	echo "Removing existing docker image ..."
-	docker rmi -f golang:1.14
+	docker rmi -f hellgate75/golang:universal
 fi
-echo "Building Go! Language base image v. $DOCKER_VERSION ..."
-docker build --rm --force-rm --no-cache $VARRGS -t golang:$DOCKER_VERSION .
+echo "Building Go! Language base image v. universal ..."
+docker build --rm --force-rm --no-cache $VARRGS -t hellgate75/golang:universal .

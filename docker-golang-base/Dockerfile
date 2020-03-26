@@ -29,8 +29,7 @@ WORKDIR /root
 COPY ./install-golang.sh /root
 COPY ./docker-entrypoint.sh /
 RUN chmod +x /root/install-golang.sh &&\
- mv /docker-entrypoint.sh /entrypoint.sh &&\
- chmod +x /entrypoint.sh &&\
+ chmod +x /docker-entrypoint.sh &&\
  sh /root/install-golang.sh
 RUN rm -f /root/install-golang.sh
 RUN echo -e "\n\n" | ssh-keygen -t rsa -f /root/.ssh/id_rsa
