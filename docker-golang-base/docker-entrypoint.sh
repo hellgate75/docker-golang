@@ -1,4 +1,5 @@
 #!/bin/sh
+FOLDER="$(realpath "$(dirname "$0")")"
 git config --global user.name "${GIT_USER}"
 git config --global user.email "${GIT_EMAIL}"
 if [ "" = "$(which go)" ]; then
@@ -28,29 +29,48 @@ fi
 # 	APP_NAME=
 
 if [ "" != "${APP_REPO}" ] && [ "" != "${APP_USER}" ] && [ "" != "${APP_NAME}" ]; then
-	if [ "" = "$(ls ${VOLUME_PATH}/)" ]; then
+	if [ ! -e ${VOLUME_PATH}/${APP_NAME} ]; then
 		if [ "" != "${SVN_REPO}" ]; then
 			echo "Cloning git repo ${SVN_REPO} in volume path"
-			git clone ${SVN_REPO} ${VOLUME_PATH}
+			cd ${VOLUME_PATH}
+			git clone ${SVN_REPO}
+			cd ${APP_NAME}
 			git checkout ${SVN_BRANCH:-master}
 		else
 			echo "No git repo to clone (variable \$SVN_BRANCH) ..."
 		fi
 	else
+		cd ${VOLUME_PATH}/${APP_NAME}
 		echo "pulling from branch: ${SVN_BRANCH:-master} ..."
 		git fetch
 		git pull origin ${SVN_BRANCH:-master}
 	fi
+	if [ ! -e ${GOPATH}/src/${APP_REPO}/${APP_USER} ]; then
+		mkdir -p "${GOPATH}/src/${APP_REPO}/${APP_USER}"
+	fi
 	GO_PROJECT_FOLDER="${GOPATH}/src/${APP_REPO}/${APP_USER}/${APP_NAME}"
-	if [ "" = "$(ls ${GO_PROJECT_FOLDER}/)" ]; then
+	if [ ! -e ${GO_PROJECT_FOLDER} ]; then
 		echo "Creating link in go sources path: ${GO_PROJECT_FOLDER} ..."
-		ln -s -T ${VOLUME_PATH} ${GO_PROJECT_FOLDER}
+		ln -s -T ${VOLUME_PATH}/${APP_NAME} ${GO_PROJECT_FOLDER}
 	fi
 fi
+
 if [ 0 -eq $# ]; then
-    if [ "" != "$GO_CMD" ] && [ "" != "$GO_ARGS" ]; then
-		echo "Running provided command: ${GO_CMD} ${GO_ARGS}"
-		sh -c "${GO_CMD}" 
+    if [ "" != "$GO_CMD" ]; then
+		if [ "" != "${APP_REPO}" ] && [ "" != "${APP_USER}" ] && [ "" != "${APP_NAME}" ]; then
+			GO_PROJECT_FOLDER="${GOPATH}/src/${APP_REPO}/${APP_USER}/${APP_NAME}"
+			if [ -e $GO_PROJECT_FOLDER ]; then
+				cd $GO_PROJECT_FOLDER
+			else
+				if [ -e ${VOLUME_PATH}/${APP_NAME} ]; then
+					cd ${VOLUME_PATH}/${APP_NAME}
+				else
+					cd ${VOLUME_PATH}
+				fi
+			fi
+		fi
+		echo "Running provided command: ${GO_CMD} ${GO_ARGS} in folder $(pwd)"
+		sh -c "${GO_CMD} ${GO_ARGS}" 
 	else
 		echo "Executing shell command: $@"
 		sh -c "$@"
