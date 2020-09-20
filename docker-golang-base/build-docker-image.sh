@@ -6,7 +6,9 @@ fi
 if [ "" != "$(which dos2unix)" ]; then
 	dos2unix golang.env
 	dos2unix docker-entrypoint.sh
-	dos2unix install-golang.sh
+	dos2unix install-golang-*.sh
+	dos2unix run-golang-app.sh
+	dos2unix clone-app-repository.sh
 fi
 FOLDER="$(realpath "$(dirname "$0")")"
 ARGS=""
