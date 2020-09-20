@@ -1,5 +1,5 @@
 #!/bin/sh
-DOCKER_VERSION="1.14"
+DOCKER_VERSION="1.15"
 if [ "" != "$(which dos2unix)" ]; then
 	dos2unix golang.env
 	dos2unix docker-entrypoint.sh

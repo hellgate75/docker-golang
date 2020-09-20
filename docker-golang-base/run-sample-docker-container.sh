@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Checking custom docker image version from command line argument(s)
-DOCKER_VERSION="1.14"
-GOVER="1.14"
+DOCKER_VERSION="1.15"
+GOVER="1.15"
 
 # Removing previous containers
 if [ "" != "$(docker ps -a|grep -v IMAGE|grep "golang-$GOVER")" ]; then

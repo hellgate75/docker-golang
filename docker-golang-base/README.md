@@ -4,7 +4,7 @@
 &nbsp;<image width="120" height="90" src="../images/docker-logo.png"></image>
 </p><br/>
 
-# Docker Go-language base image (Go version 1.14)
+# Docker Go-language base image (Go version 1.15)
 Go Language docker base image
 
 This image install latest version in the release list, from Go! Language repo, and it requires express internet access. After the
@@ -15,7 +15,7 @@ runtime at the first container execution.
 
 Pre-built images available at: [hellgate75/golang](https://hub.docker.com/repository/docker/hellgate75/golang)
 
-Pull image: `docker push hellgate75/golang:1.14`
+Pull image: `docker push hellgate75/golang:1.15`
 
 ## Characteristics
 
