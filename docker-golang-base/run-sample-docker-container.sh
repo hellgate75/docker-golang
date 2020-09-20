@@ -11,10 +11,10 @@ if [ "" != "$1" ]; then
 fi
 
 # Removing previous containers
-if [ "" != "$(docker ps -a|grep -v IMAGE|grep "golang-$GOVER")" ] then {
+if [ "" != "$(docker ps -a|grep -v IMAGE|grep "golang-$GOVER")" ]; then
 	echo "Removing existing docker container: golang-$GOVER ..."
 	docker rm -f golang-$GOVER
-}
+fi
 
 # Running and logging universal container without code
 echo "Running docker container: golang-$GOVER (Go version $GOVER) ..."

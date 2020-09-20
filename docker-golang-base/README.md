@@ -4,7 +4,7 @@
 &nbsp;<image width="120" height="90" src="../images/docker-logo.png"></image>
 </p><br/>
 
-# Docker Go-language base image
+# Docker Go-language base image (Go language version: latest)
 Go Language docker base image
 
 This image install latest version in the release list, from Go! Language repo, and it requires express internet access. After the
