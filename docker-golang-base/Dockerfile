@@ -16,6 +16,7 @@ ENV PATH=${PATH}:${GOPATH}/bin:${GOINST}/bin\
     OS=linux\
     ARCH=amd64\
 	GO_CMD=\
+	GIT_SERVER=${GO_GIT_SERVER}\
 	GIT_USER=${GO_GIT_USER}\
 	GIT_EMAIL=${GO_GIT_EMAIL}\
 	VOLUME_PATH=/usr/shared/app\
@@ -26,12 +27,19 @@ ENV PATH=${PATH}:${GOPATH}/bin:${GOINST}/bin\
 	APP_NAME=${GO_APP_NAME}
 
 WORKDIR /root
-COPY ./install-golang.sh /root
+RUN mkdir /root/scripts
+COPY ./install-golang-precond.sh /root/scripts
+COPY ./install-golang-deps.sh /root/scripts
+COPY ./install-golang-version.sh /root/scripts
+COPY ./clone-app-repository.sh /root/scripts
+COPY ./run-golang-app.sh /root/scripts
 COPY ./docker-entrypoint.sh /
-RUN chmod +x /root/install-golang.sh &&\
+RUN chmod +x /root/scripts/install-golang-precond.sh &&\
  chmod +x /docker-entrypoint.sh &&\
- sh /root/install-golang.sh
-RUN rm -f /root/install-golang.sh
+ chmod +x /root/scripts/install-golang-version.sh &&\
+ chmod +x /root/scripts/clone-app-repository.sh &&\
+ chmod +x /root/scripts/run-golang-app.sh &&\
+ sh -c /root/scripts/install-golang-precond.sh
 RUN echo -e "\n\n" | ssh-keygen -t rsa -f /root/.ssh/id_rsa
 RUN git config --global user.name "${GIT_USER}" &&\
  git config --global user.email "${GIT_EMAIL}" &&\
