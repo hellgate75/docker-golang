@@ -7,7 +7,7 @@ ARG GO_SVN_BRANCH
 ARG GO_APP_REPO
 ARG GO_APP_USER
 ARG GO_APP_NAME
-ARG GO_VERSION=latest
+ARG GO_VERSION=1.14
 
 ENV GOINST=/usr/share/go\
 	GOPATH=/root/go
@@ -39,7 +39,9 @@ RUN chmod +x /root/scripts/install-golang-precond.sh &&\
  chmod +x /root/scripts/install-golang-version.sh &&\
  chmod +x /root/scripts/clone-app-repository.sh &&\
  chmod +x /root/scripts/run-golang-app.sh &&\
- sh -c /root/scripts/install-golang-precond.sh
+ sh -c /root/scripts/install-golang-precond.sh &&\
+ sh -c /root/scripts/install-golang-version.sh &&\
+ rm -f /root/scripts/install-golang-*
 RUN echo -e "\n\n" | ssh-keygen -t rsa -f /root/.ssh/id_rsa
 RUN git config --global user.name "${GIT_USER}" &&\
  git config --global user.email "${GIT_EMAIL}" &&\

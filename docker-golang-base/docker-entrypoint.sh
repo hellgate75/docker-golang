@@ -2,9 +2,6 @@
 FOLDER="$(realpath "$(dirname "$0")")"
 git config --global user.name "${GIT_USER}"
 git config --global user.email "${GIT_EMAIL}"
-if [ "" = "$(which go)" ]; then
-	sh -c /root/scripts/install-golang-version.sh
-fi
 
 if [ "" != "${APP_REPO}" ] && [ "" != "${APP_USER}" ] && [ "" != "${APP_NAME}" ]; then
 	sh -c /root/scripts/clone-app-repository.sh
