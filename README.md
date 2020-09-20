@@ -28,9 +28,11 @@ Following some provided sub-projects, by category.
 
 ## Other branches
 
-* [master](https://github.com/hellgate75/docker-golang/)
+* [golang universal](https://github.com/hellgate75/docker-golang/tree/golang-universal)
 
-* [golang v1,14](https://github.com/hellgate75/docker-golang/tree/golang-v1.14)
+* [golang v1.14](https://github.com/hellgate75/docker-golang/tree/golang-v1.14)
+
+* [golang v1.15](https://github.com/hellgate75/docker-golang/tree/golang-v1.15)
 
 
 
